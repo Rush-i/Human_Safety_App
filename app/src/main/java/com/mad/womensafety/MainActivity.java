@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -53,10 +54,35 @@ public class MainActivity extends AppCompatActivity {
     DbHelper db;
     List<ContactModel> list;
     CustomAdapter customAdapter;
+    String[] numbers={"Police-100","Fire-101","Ambulance-102","Women Helpline-1091"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ArrayAdapter<String>adapter=new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, numbers);
+        AutoCompleteTextView actv=(AutoCompleteTextView) findViewById(R.id.ac_helpline);
+        actv.setThreshold(1);
+        actv.setAdapter(adapter);
+        actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "Selected item"+parent.getSelectedItem(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        Button btn = (Button) findViewById(R.id.btnNavigate);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://www.youtube.com/watch?v=qDQnFYo8eug&ab_channel=TheMSsoundeffects"));
+                startActivity(intent);
+            }
+        });
 
         int permissionCheck = ContextCompat.checkSelfPermission (MainActivity.this, Manifest.permission.SEND_SMS);
         if (permissionCheck != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission (MainActivity.this,

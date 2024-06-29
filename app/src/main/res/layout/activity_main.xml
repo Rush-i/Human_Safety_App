@@ -38,4 +38,21 @@
         app:elevation="8dp"
         tools:ignore="SpeakableTextPresentCheck"
         />
+
+    <AutoCompleteTextView
+        android:id="@+id/ac_helpline"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:hint="Helpline numbers" />
+
+    <Button
+        android:id="@+id/btnNavigate"
+        android:layout_width="131dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/urlText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="60dp"
+        android:text="Alarm" />
 </LinearLayout>
